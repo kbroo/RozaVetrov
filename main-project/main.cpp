@@ -2,15 +2,14 @@
 
 using namespace std;
 
-int main() 
+int main()
 {
 
-	setlocale(LC_ALL, "Russian");
+    cout << "Laboratory work #8. GIT\n";
+    cout << "Variant #6. Roza Vetrov\n";
+    cout << "Author: Kvit Ilya\n";
+    cout << "Group: 25Pinzh1D\n";
 
-	cout << "Roza Vetrov" << endl;
-	cout << "Variant: 6" << endl;
-	cout << "Author: Kvit Ilya" << endl;
-
-	return 0;
+    return 0;
 
 }
