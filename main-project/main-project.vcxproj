@@ -127,7 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="comparators.cpp" />
+    <ClCompile Include="file_reader.cpp" />
+    <ClCompile Include="filters.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="sorts.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="comparators.h" />
+    <ClInclude Include="constants.h" />
+    <ClInclude Include="file_reader.h" />
+    <ClInclude Include="filters.h" />
+    <ClInclude Include="sorts.h" />
+    <ClInclude Include="wind_record.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

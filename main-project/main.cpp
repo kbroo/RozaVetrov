@@ -1,8 +1,11 @@
 #include <iostream>
 #include <iomanip>
+#include <vector>
 #include "file_reader.h"
-#include "filters.h"
 #include "file_reader.cpp"
+#include "filters.h"
+#include "sorts.h"
+#include "comparators.h"
 
 using namespace std;
 
@@ -50,9 +53,47 @@ int main() {
         case 3:
             printRecords(filterBySpeedAbove5(records), "Speed > 5 m/s");
             break;
-        case 4:
-            // Sorting will be added in next step
+        case 4: {
+            vector<WindRecord*> recordPtrs;
+            for (auto& record : records) {
+                recordPtrs.push_back(&record);
+            }
+
+            cout << "\n--- Select Sort Method ---\n";
+            cout << "1. Shaker Sort\n";
+            cout << "2. Merge Sort\n";
+            int sortMethod;
+            cin >> sortMethod;
+
+            cout << "\n--- Select Sort Criteria ---\n";
+            cout << "1. By speed (descending)\n";
+            cout << "2. By direction, month, day (ascending)\n";
+            int compareMethod;
+            cin >> compareMethod;
+
+            void (*sortFuncs[])(vector<WindRecord*>&, ComparatorFunc) = {
+                shakerSort,
+                mergeSort
+            };
+
+            ComparatorFunc compareFuncs[] = {
+                compareBySpeedDescending,
+                compareByDirectionMonthDay
+            };
+
+            if (sortMethod >= 1 && sortMethod <= 2 && compareMethod >= 1 && compareMethod <= 2) {
+                sortFuncs[sortMethod - 1](recordPtrs, compareFuncs[compareMethod - 1]);
+
+                cout << "\n=== Sorted Records ===" << endl;
+                for (const auto* record : recordPtrs) {
+                    printRecord(*record);
+                }
+            }
+            else {
+                cout << "Invalid choice!" << endl;
+            }
             break;
+        }
         case 0:
             cout << "Exiting program" << endl;
             break;
